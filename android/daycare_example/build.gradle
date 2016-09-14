@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "edu.ucla.cs.daycare"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        archivesBaseName = "daycare"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // The baggins library
+    compile project(':baggins')
+
+    // For Android support library for backwards compatibility with older apis
+    compile 'com.android.support:appcompat-v7:23.3.0'
+
+    // For the RecyclerView (modern list view)
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+}

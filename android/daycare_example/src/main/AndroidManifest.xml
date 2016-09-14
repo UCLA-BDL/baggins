@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="edu.ucla.cs.daycare"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ************************************************************** -->
+    <!-- Permissions                                                    -->
+    <!-- ************************************************************** -->
+
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <!-- ************************************************************** -->
+    <!-- Example Application                                            -->
+    <!-- ************************************************************** -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main Activity -->
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".auth.AuthActivity"
+            android:excludeFromRecents="true"
+            android:label="Log In"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            <!--
+                No intent-filter here! This activity is only ever launched by
+                someone who explicitly knows the class name
+             -->
+        </activity>
+
+        <!-- **************************************************************
+             Baggins Authenticator Service
+             ************************************************************** -->
+
+        <service android:name=".auth.BagginsAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!-- **************************************************************
+             Baggins ContentProvider
+             ************************************************************** -->
+
+        <provider
+            android:name="edu.ucla.cs.baggins.data.provider.BagginsSQLiteProvider"
+            android:authorities="edu.ucla.cs.daycare"
+            android:syncable="true">
+
+            <meta-data
+                android:name="SQLiteDatabaseName"
+                android:value="daycare_db" />
+        </provider>
+
+        <!-- **************************************************************
+             Baggins  Syncadapter
+             ************************************************************** -->
+
+        <service
+            android:name="edu.ucla.cs.baggins.data.sync.BagginsSyncService"
+            android:exported="true">
+
+            <!-- This intent filter is required. It allows the
+                 system to launch our sync service as needed. -->
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <!-- This points to a required XML file which describes our SyncConstants. -->
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+    </application>
+</manifest>

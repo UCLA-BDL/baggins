@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Note that android:accountType references @string so that the variable can
+     be referenced from the Java code. -->
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:accountPreferences="@xml/authenticator_preferences"
+                       android:accountType="@string/authenticator_account_type"
+                       android:icon="@mipmap/logo"
+                       android:label="@string/app_name"
+                       android:customTokens="true"
+                       android:smallIcon="@mipmap/logo" />

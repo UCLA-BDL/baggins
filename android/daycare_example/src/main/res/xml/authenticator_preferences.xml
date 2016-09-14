@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- See: http://www.fussylogic.co.uk/blog/?p=1031
+     This file defines the user interface for configuring the authentication service as a whole;
+     this is not the same thing as configuring an individual account, this is settings for the
+     account type. -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Baggins Example Authentication" />
+    <!--<CheckBoxPreference-->
+        <!--android:key="isDebug"-->
+        <!--android:summary="Connecting to a debug server instead of production server"-->
+        <!--android:title="Use debug server" />-->
+    <!--<SwitchPreference-->
+        <!--android:key="logsVerbose"-->
+        <!--android:summary="Increase logging verbosity for LogCat output"-->
+        <!--android:title="Debug Logs" />-->
+</PreferenceScreen>

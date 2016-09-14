@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Daycare</string>
+    <string name="authority">edu.ucla.cs.daycare</string>
+    <string name="authenticator_account_type">edu.ucla.cs.daycare.account</string>
+</resources>
